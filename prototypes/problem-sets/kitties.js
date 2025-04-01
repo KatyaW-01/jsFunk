@@ -21,9 +21,22 @@ e.g.
 
 Annotate:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
+
+  1) used filter to create array of just the orange kitty objects
+  2) used map on the new array to turn each object into just the name
+  3) returned the final result
+  
 */
-
-
+function findOrangeNames(){
+  const orangeKitties = kitties.filter((kitty) => {
+    return kitty.color === 'orange'
+  })
+  const orangeNames = orangeKitties.map((orangeKitty)=> {
+    return orangeKitty.name
+  })
+  return orangeNames
+}
+console.log(findOrangeNames())
 /*
 Level 2
 
