@@ -2,7 +2,7 @@ const { books } = require('../datasets/books');
 
 // To run the code you've written in this file, use node prototypes/problem-sets/books.js
 
-console.log('Running books.js')
+console.log('Running books.js\n')
 
 /* Books Prompts*/
 
@@ -23,9 +23,21 @@ e.g.
 
 Annotate:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
+  1. Filter through the array pulling out the books that are not horror or true crime
+  2. map over the filtered array of books returning just the book title
 */
 
+function removeViolence(data){
+  let notHorrorOrCrimeArray = data.filter((book)=>{
+    return book.genre != "Horror" && book.genre != "True Crime"
+  })
+  let bookNames = notHorrorOrCrimeArray.map((book)=>{
+    return book.title
+  })
+  return bookNames
+}
 
+console.log("non-violent book titles:", removeViolence(books))
 
 /*
 Level 2
@@ -74,11 +86,17 @@ e.g.
 
 Annotation:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
+  1. filter through the array pulling out the items where the book genre matches the genre put in the paramaters
+  2. return the array
 */
 
+// function getByGenre(booksData,genre){
+//   let booksGenreArray = booksData.filter((book) => book.genre === genre)
+//   return booksGenreArray
+// }
 
-
-
+// console.log("Array of Fiction books:", getByGenre(books, "Fiction"))
+// console.log("Array of satire books:", getByGenre(books, "Satire"))
 /*
 Level 3
 
@@ -107,7 +125,16 @@ Annotation:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible.  
 */
 
+// function getByGenre(booksData,genre){
+//   let booksGenreArray = booksData.filter((book) => book.genre === genre)
+//   let genreBookTitles = booksGenreArray.map((book)=>{
+//     return book.title
+//   })
+//   return genreBookTitles
+// }
 
+// console.log("Array of Fiction book titles:", getByGenre(books, "Fiction"))
+// console.log("Array of satire book titles:", getByGenre(books, "Satire"))
 
 /*
 Level 4
@@ -136,7 +163,19 @@ Annotation:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible.  
 */
   
+function getByGenre(booksData,genre,year){
+  let booksGenreArray = booksData.filter((book) => book.genre === genre)
+  let filteredByYear = booksGenreArray.filter((book) => book.published > year)
+  
 
+  let genreBookTitles = filteredByYear.map((book)=>{
+    return book.title
+  })
+  return genreBookTitles
+}
+
+console.log("Array of Fiction book titles by year:", getByGenre(books, "Fiction", 1954))
+console.log("Array of satire book titles by year:", getByGenre(books, "Satire", 1950))
 
 /*
 Level 5
@@ -157,10 +196,24 @@ e.g.
 
 Annotation:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible.  
+  1. filter through the array returning only the book objects published after 1900
+  2. use reduce to create an array of hashes with only the book title and year
+  3. return that array
+  4. console log the function
 */
 
-
-
+function getNewBooks(){
+  let filteredArray = books.filter((book)=>{
+    return book.published >= 1900
+  })
+  let newBooks = filteredArray.reduce((acc,book)=>{
+    acc.push({"title": book.title,
+       "year": book.published})
+    return acc
+  },[])
+  return newBooks
+}
+console.log("New Books:", getNewBooks())
 /*
 Level 6
 
@@ -177,8 +230,8 @@ Annotation:
 
 
 
-// module.exports = {
-//   removeViolence,
-//   getByGenre,
-//   getNewBooks,
-// };
+module.exports = {
+  removeViolence,
+  getByGenre,
+  getNewBooks,
+};

@@ -688,7 +688,7 @@ describe("PROTOTYPES", () => {
   });
 
   describe("Book prompts", () => {
-    it.skip("removeViolence", () => {
+    it("removeViolence", () => {
       const e = removeViolence(books);
 
       expect(e).to.deep.equal(['1984',
@@ -719,7 +719,7 @@ describe("PROTOTYPES", () => {
       }])
     });
 
-    it.skip("getByGenre", () => {
+    it("getByGenre", () => {
       const e = getByGenre(books, "Fiction", 1954);
 
       expect(e).to.deep.equal([ 'Life of Pi', 'The Bell Jar' ])
