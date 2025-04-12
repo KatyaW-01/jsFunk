@@ -2,7 +2,7 @@ const { bosses } = require('../datasets/bosses');
 
 // To run the code you've written in this file, use node prototypes/problem-sets/bosses.js
 
-console.log('Running bosses.js')
+console.log('Running bosses.js\n')
 
 /* Bosses Prompts*/
 
@@ -28,7 +28,13 @@ Annotate:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
 
-
+// function getBossData(bossName){
+//   let signatureMove = bosses[bossName].signatureMove
+//   return `${bosses[bossName].name}'s signatureMove is ${signatureMove}.`
+  
+// }
+// console.log(getBossData("scar"))
+// console.log(getBossData("ursula"))
 /*
 Level 2
 
@@ -56,7 +62,14 @@ Annotation:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
 
-
+function getBossData(boss,attribute){
+  let bossName = bosses[boss].name
+  let bossAttribute = bosses[boss][attribute]
+  return `${bossName}'s ${attribute} is ${bossAttribute}.`
+}
+console.log(getBossData("scar", "archnemesis"))
+console.log(getBossData("jafar", "signatureMove"))
+console.log(getBossData("ursula", "goal"))
 /*
 Level 3
 
@@ -75,8 +88,16 @@ e.g.
 Annotation:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
+function getLoyalty(bossName){
+  let bossArray = bosses[bossName].sidekicks
+  console.log(bossArray)
 
+  let loyaltySum = bossArray.reduce((acc,sidekick)=>{
 
+  },0)
+
+}
+console.log(getLoyalty("scar"))
 /*
 Level 4
 
