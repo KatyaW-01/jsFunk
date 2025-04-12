@@ -467,7 +467,7 @@ describe("PROTOTYPES", () => {
   })
 
   describe("Bosses Prompts", () => {
-    it.skip("getBossData", () => {
+    it("getBossData", () => {
       const scarNemesis = getBossData('scar', 'archnemesis');
       const jafarMove = getBossData('jafar', 'signatureMove');
       const ursulaGoal = getBossData('ursula', 'goal');
@@ -478,7 +478,7 @@ describe("PROTOTYPES", () => {
     });
 
     
-    it.skip("getLoyalty", () => {
+    it("getLoyalty", () => {
       const scarLoyalty = getLoyalty('scar');
       const ursulaLoyalty = getLoyalty('ursula');
       const jafarLoyalty = getLoyalty('jafar');

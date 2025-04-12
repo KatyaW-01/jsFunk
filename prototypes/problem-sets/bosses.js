@@ -89,15 +89,19 @@ Annotation:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
 function getLoyalty(bossName){
-  let bossArray = bosses[bossName].sidekicks
-  console.log(bossArray)
+  let sidekickArray = bosses[bossName].sidekicks
+  
 
-  let loyaltySum = bossArray.reduce((acc,sidekick)=>{
-
+  let loyaltySum = sidekickArray.reduce((acc,sidekick)=>{
+    acc += sidekick.loyaltyToBoss
+    return acc
   },0)
+
+  return loyaltySum / sidekickArray.length
 
 }
 console.log(getLoyalty("scar"))
+console.log(getLoyalty("ursula"))
 /*
 Level 4
 
@@ -114,10 +118,10 @@ Annotation:
 
 
 
-// module.exports = {
-//   getBossData,
-//   getLoyalty
-// };
+module.exports = {
+  getBossData,
+  getLoyalty
+};
 
 
 
