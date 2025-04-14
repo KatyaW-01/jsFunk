@@ -2,7 +2,7 @@ const { breweries } = require('../datasets/breweries');
 
 // To run the code you've written in this file, use node prototypes/problem-sets/breweries.js
 
-console.log('Running breweries.js')
+console.log('Running breweries.js\n')
 
 /* Breweries Prompts*/
 
@@ -21,8 +21,14 @@ e.g.
 Annotate:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
-
-
+function getBeerCount(){
+  let beersCount = breweries.reduce((acc,brewery)=>{
+    acc += brewery.beers.length
+    return acc
+  },0)
+  return beersCount
+}
+console.log(getBeerCount())
 /*
 Level 2
 
@@ -43,8 +49,18 @@ e.g.
 Annotation:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
+function getBreweryBeerCount(){
+  let array = breweries.map((brewery)=>{
+    return {
+      name: brewery.name,
+      beerCount: brewery.beers.length
+    }
+  })
+ return array
+  
+}
 
-
+console.log(getBreweryBeerCount())
 /*
 Level 3
 
@@ -65,7 +81,13 @@ Annotation:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
 
+function getSingleBreweryBeerCount(breweryName){
+  let breweryArray = breweries.filter((brewery)=> brewery.name === breweryName)
 
+  return breweryArray[0].beers.length
+}
+console.log(getSingleBreweryBeerCount('Ratio Beerworks'))
+console.log(getSingleBreweryBeerCount("Platt Park Brewing Co."))
   
 /*
 Level 4
@@ -88,7 +110,28 @@ e.g.
 Annotate:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
+function findHighestAbvBeer(breweryName){
+  let filteredArray = breweries.filter((brewery)=> brewery.name === breweryName)
+  
+  let array = filteredArray.map((attribute)=>{
+    return attribute.beers
+  })
+  let beersArray = array[0]
+ 
+  let abvArray = beersArray.reduce((acc,beer)=>{
+    acc.push(beer.abv)
+    return acc
+  },[])
 
+
+  let maxAbv = Math.max(...abvArray)
+ 
+  let maxAbvObject = beersArray.filter((beer)=>beer.abv === maxAbv)
+  return maxAbvObject[0]
+
+}
+console.log(findHighestAbvBeer("Ratio Beerworks"))
+console.log(findHighestAbvBeer("Little Machine Brew"))
 /*
 Level 5
 
@@ -105,8 +148,22 @@ Annotate:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
 
+function findHighestAbvAll(){
+  let beers = breweries.flatMap((brewery)=>{
+    return brewery.beers
+  })
 
+ let abvArray = beers.map((beer)=>{
+  return beer.abv
+ })
 
+ let maxAbv = Math.max(...abvArray)
+ let abvObject = beers.filter((beer)=>{
+  return beer.abv === maxAbv
+ })
+ return abvObject[0]
+}
+console.log("highest abv:",findHighestAbvAll())
 /*
 Level 6
 
@@ -123,10 +180,10 @@ Annotation:
 
 
 
-// module.exports = {
-//   getBeerCount,
-//   getBreweryBeerCount,
-//   getSingleBreweryBeerCount,
-//   findHighestAbvBeer,
-//   findHighestAbvAll
-// };
+module.exports = {
+  getBeerCount,
+  getBreweryBeerCount,
+  getSingleBreweryBeerCount,
+  findHighestAbvBeer,
+  findHighestAbvAll
+};

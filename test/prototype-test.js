@@ -843,13 +843,13 @@ describe("PROTOTYPES", () => {
   });
 
   describe("Brewery Prompts", () => {
-    it.skip("getBeerCount", () => {
+    it("getBeerCount", () => {
       const e = getBeerCount();
 
       expect(e).to.deep.equal(40)
     });
 
-    it.skip("getBreweryBeerCount", () => {
+    it("getBreweryBeerCount", () => {
       const e = getBreweryBeerCount();
 
       expect(e).to.deep.equal([{
@@ -870,7 +870,7 @@ describe("PROTOTYPES", () => {
       }])
     });
 
-    it.skip("getSingleBreweryBeerCount", () => {
+    it("getSingleBreweryBeerCount", () => {
       const ratioCount = getSingleBreweryBeerCount('Ratio Beerworks');
       const plattCount = getSingleBreweryBeerCount('Platt Park Brewing Co.');
 
@@ -878,7 +878,7 @@ describe("PROTOTYPES", () => {
       expect(plattCount).to.equal(7);
     });
 
-    it.skip("findHighestAbvBeer", () => {
+    it("findHighestAbvBeer", () => {
       const e = findHighestAbvBeer("Ratio Beerworks");
 
       expect(e).to.deep.equal({ name: 'Hold Steady', type: 'Chocolate Rye Scotch Ale', abv: 7.5, ibu: 27, })
@@ -889,7 +889,7 @@ describe("PROTOTYPES", () => {
     })
 
 
-    it.skip("findHighestAbvAll", () => {
+    it("findHighestAbvAll", () => {
       const e = findHighestAbvAll();
 
       expect(e).to.deep.equal({
