@@ -301,7 +301,7 @@ describe("PROTOTYPES", () => {
   })
 
   describe("Crafting Prompts", () => {
-    it.skip("getSupplyList", () => {
+    it("getSupplyList", () => {
       const crossStitchList = getSupplyList("crossStitching");
       const crochetList = getSupplyList('crocheting');
       const weavingList = getSupplyList('weaving');
@@ -312,7 +312,7 @@ describe("PROTOTYPES", () => {
     });
 
     
-    it.skip("getDetailedList", () => {
+    it("getDetailedList", () => {
       const knitList = getDetailedList("knitting");
       const crochetList = getDetailedList('crocheting');
       const weavingList = getDetailedList('weaving');
