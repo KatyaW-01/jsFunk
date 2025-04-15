@@ -2,7 +2,7 @@ const { cakes } = require('../datasets/cakes');
 
 // To run the code you've written in this file, use node prototypes/problem-sets/cakes.js
 
-console.log('Running cakes.js')
+console.log('Running cakes.js\n')
 
 /* Cakes Prompts*/
 
@@ -25,9 +25,19 @@ e.g.
 
 Annotate:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
+  1. use a map to iterate over the cakes array and return an object of just the flavor and instock
 */
+function getStockCounts(){
+  let stockArray = cakes.map((cake)=>{
+    return {
+      flavor: cake.cakeFlavor,
+      inStock: cake.inStock
+    }
+  })
+  return stockArray
 
-
+}
+console.log(getStockCounts())
 /*
 Level 2
 
@@ -60,8 +70,13 @@ e.g.
 Annotation:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
-
-
+function getInStock(){
+  let inStockCakes = cakes.filter((cake)=>{
+    return cake.inStock > 0
+  })
+  return inStockCakes
+}
+console.log(getInStock())
 /*
 Level 3
 
@@ -76,10 +91,18 @@ e.g.
 
 Annotation:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
+  1. Use reduce to iterate over the cakes array and get the sum of the inStock value
+  2. return that value 
 */
 
-
-  
+function doInventory(){
+  let cakeSum = cakes.reduce((acc,cake)=>{
+    acc += cake.inStock
+    return acc
+  },0)
+  return cakeSum
+}
+console.log("total inventory:",doInventory())  
 /*
 Level 4
 
@@ -96,8 +119,16 @@ e.g.
 Annotation:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
+function getToppings(){
+  let allToppings = cakes.flatMap((cake)=>{
+    return cake.toppings
+  })
 
+  let uniqueToppings = [...new Set(allToppings)]
 
+  return uniqueToppings
+}
+console.log(getToppings())
 /*
 Level 5
 
@@ -119,10 +150,24 @@ e.g.
 
 Annotation:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
+  1. use flatMap to filter through the array of objects, returning only the nested toppings array. FlatMap will make it so your return value is a single array of all the toppings instead of multiple nested arrays
+  2. Use a reduce on the toppings array making the topping a key of a hash and then use filter for the value finding where the topping is equal to the element of the reduce which will return an array of just those toppings.
+  3. calling .length on the filter will give you how many you have of those toppings.
 */
 
+function makeGroceryList(){
+  let allToppings = cakes.flatMap((cake)=>{
+    return cake.toppings
+  })
+  
+  let list = allToppings.reduce((acc,item)=>{
+    acc[item] = allToppings.filter((topping)=>topping === item).length
+    return acc
+  },{})
 
-
+  return list
+}
+console.log("Grocery List:", makeGroceryList())
 /*
 Level 6
 
@@ -139,10 +184,10 @@ Annotation:
 
 
 
-// module.exports = {
-//   getStockCounts,
-//   getInStock,
-//   doInventory,
-//   getToppings,
-//   makeGroceryList
-// };
+module.exports = {
+  getStockCounts,
+  getInStock,
+  doInventory,
+  getToppings,
+  makeGroceryList
+};
