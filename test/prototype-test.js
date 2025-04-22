@@ -595,7 +595,7 @@ describe("PROTOTYPES", () => {
       }])
     });
 
-    it.skip("totalCapacities", () => {
+    it("totalCapacities", () => {
       const e = getCapacities();
 
       expect(e).to.deep.equal({
@@ -604,7 +604,7 @@ describe("PROTOTYPES", () => {
       })
     });
 
-    it.skip("sortByCapacity", () => {
+    it("sortByCapacity", () => {
       const e = sortByCapacity(classrooms);
 
       expect(e).to.deep.equal([{
@@ -642,7 +642,7 @@ describe("PROTOTYPES", () => {
       }])
     })
 
-    it.skip("filter and sort BE", () => {
+    it("filter and sort BE", () => {
       const e = filterAndSortClassrooms("BE");
 
       expect(e).to.deep.equal([{
@@ -664,7 +664,7 @@ describe("PROTOTYPES", () => {
       }])
     })
 
-    it.skip("filter and sort FE", () => {
+    it("filter and sort FE", () => {
       const e = filterAndSortClassrooms("FE");
 
       expect(e).to.deep.equal([{

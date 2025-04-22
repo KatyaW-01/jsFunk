@@ -26,9 +26,14 @@ e.g.
 
 Annotate:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
+  1. use filter to filter through the array and pull out all the objects where the program strictly equals 'FE'
+  2. return that array
 */
-
-
+function getClassrooms(){
+  let frontEnd = classrooms.filter((room)=>room.program === 'FE')
+  return frontEnd
+}
+console.log("classrooms:",getClassrooms())
 /*
 Level 2
 
@@ -47,9 +52,25 @@ e.g.
 
 Annotation:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
+  1. use reduce to get the capacity of backend and front end
+  2. add the keys to your starting value hash with the value starting at 0 so that you can accumulate
 */
 
 
+function getCapacities(){
+  let capacity = classrooms.reduce((acc,room)=>{
+    if (room.program === 'FE'){
+      acc.feCapacity += room.capacity
+    }
+    else {
+      acc.beCapacity += room.capacity
+    }
+    return acc
+  },{feCapacity: 0, beCapacity: 0})
+
+  return capacity
+}
+console.log(getCapacities())
 /*
 Level 3
 
@@ -86,8 +107,13 @@ Annotation:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
 
-
-  
+function sortByCapacity(){
+  const result = classrooms.sort((a,b)=>{
+    return a.capacity -b.capacity
+  })
+  return result
+}
+console.log(sortByCapacity())
 /*
 Level 4
 
@@ -118,7 +144,12 @@ e.g.
 Annotate:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
-
+function getClassroomsRefactor(end){
+  let frontEnd = classrooms.filter((room)=>room.program === end)
+  return frontEnd
+}
+console.log(getClassroomsRefactor("FE"))
+console.log(getClassroomsRefactor("BE"))
 
 /*
 Level 5
@@ -155,7 +186,13 @@ e.g.
 Annotate:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
-
+function sortByCapacityRefactor(data){
+  const result = data.sort((a,b)=>{
+    return a.capacity -b.capacity
+  })
+  return result
+}
+console.log(sortByCapacityRefactor(classrooms))
 /*
 Level 6
 
@@ -199,8 +236,14 @@ e.g.
 Annotate:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
-
-
+function filterAndSortClassrooms(end){
+  let program = classrooms.filter((room)=>room.program === end)
+  const result = program.sort((a,b)=>{
+    return a.capacity -b.capacity
+  })
+  return result
+}
+console.log("filter and sort:",filterAndSortClassrooms("BE"))
 /*
 Level 7
 
@@ -270,9 +313,9 @@ Annotation:
 
 
 
-// module.exports = {
-//   getClassrooms,
-//   getCapacities,
-//   sortByCapacity,
-//   filterAndSortClassrooms
-// };
+module.exports = {
+  getClassrooms,
+  getCapacities,
+  sortByCapacity,
+  filterAndSortClassrooms
+};

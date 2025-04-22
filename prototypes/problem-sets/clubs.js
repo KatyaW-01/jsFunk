@@ -28,8 +28,24 @@ Annotate:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
 
+function findClubMembers (data){
+  let members = data.flatMap((club)=>{
+    return club.members
+  })
+  let clubs = data.map((club)=>{
+    return club.club
+  })
+  console.log(clubs)
+  let results = members.reduce((acc,member)=>{
+    if (!acc[member]){
+      acc[member] = []
+    }
+    acc[member].push()
+    return acc
+  },{})
 
-
+}
+console.log(findClubMembers(clubs))
 /*
 Level 2
 
