@@ -21,8 +21,16 @@ e.g.
 Annotate:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
-
-
+function getAverageTemps(){
+  let temperature = weather.map((weatherObj)=>{
+    return weatherObj.temperature
+  })
+  let average = temperature.map((temp)=>{
+    return (temp.high + temp.low)/2
+  })
+  return average
+}
+console.log(getAverageTemps())
 /*
 Level 2
 
@@ -42,8 +50,16 @@ e.g.
 Annotation:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
-
-
+function findSunnySpots(){
+  let filteredWeather = weather.filter((city)=>{
+    return city.type === 'sunny' || city.type === 'mostly sunny'
+  })
+  let weatherStrings = filteredWeather.map((city)=>{
+    return `${city.location} is ${city.type}.`
+  })
+  return weatherStrings
+}
+console.log(findSunnySpots())
 /*
 Level 3
 
@@ -66,8 +82,15 @@ Annotation:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
 
-
-  
+function findHighestHumidity(){
+  let humidity = weather.map((city)=>{
+    return city.humidity
+  })
+  let maxhumidity = Math.max(...humidity)
+  let array = weather.filter((city)=> city.humidity === maxhumidity)
+  return array[0]
+}
+console.log(findHighestHumidity())  
 /*
 Level 4
 
@@ -101,7 +124,20 @@ Annotate:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
 
-
+function findByType(data,type){
+  let filteredData = data.filter((city)=> city.type.includes(type))
+  return filteredData.map((city)=>{
+    if(type === 'sunny'){
+      return `${city.location} is ${city.type}.`
+    }
+    else {
+      return `${city.location} is ${city.type}`
+    }
+    
+  })
+}
+console.log(findByType(weather, "sunny"))
+console.log(findByType(weather, "cloudy"))
 /*
 Level 5
 
@@ -125,7 +161,21 @@ e.g.
 Annotate:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
+function getAverageTempByType(type,temp){
+  let weatherType = weather.filter((city)=>{
+    return city.type === type
+  })
 
+  let tempSum = weatherType.reduce((acc,city)=>{
+    acc += city.temperature[temp]
+    return acc
+  },0)
+  let avg = tempSum/weatherType.length
+  return `The average ${temp} for ${type} locations is ${avg} degrees.`
+}
+console.log(getAverageTempByType("sunny", "high"))
+console.log(getAverageTempByType("sunny", "low"))
+console.log(getAverageTempByType("cloudy", "low"))
 /*
 Level 6
 
@@ -172,10 +222,10 @@ Annotation:
 
 
 
-// module.exports = {
-//   getAverageTemps,
-//   findSunnySpots,
-//   findHighestHumidity,
-//   findByType,
-//   getAverageTempByType
-// };
+module.exports = {
+  getAverageTemps,
+  findSunnySpots,
+  findHighestHumidity,
+  findByType,
+  getAverageTempByType
+};
