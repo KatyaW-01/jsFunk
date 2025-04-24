@@ -26,25 +26,45 @@ e.g.
 
 Annotate:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
+  1. set a variable equal to an empty object
+  2. Iterate over the dataset pulling out the club names and the member arrays
+  3. iterate over the member arrays
+    4. if there isnt already a key of that member in the results object create one and set the value to an empty array
+    5. push the club name into that array
+  6. return the results
 */
 
-function findClubMembers (data){
-  let members = data.flatMap((club)=>{
-    return club.members
-  })
-  let clubs = data.map((club)=>{
-    return club.club
-  })
-  console.log(clubs)
-  let results = members.reduce((acc,member)=>{
-    if (!acc[member]){
-      acc[member] = []
-    }
-    acc[member].push()
-    return acc
-  },{})
+// function findClubMembers(data){
+//   let results = {}
+  
+//   data.forEach((club)=>{
+//     let name = club.club
+//     let members = club.members
 
+//     members.forEach((member)=>{
+//       if(!results[member]){
+//         results[member] = []
+//       }
+//       results[member].push(name)
+//     })
+//   })
+//   return results
+// }
+
+// console.log(findClubMembers(clubs))
+
+function findClubMembers(data) {
+  return data.reduce((acc, { club, members }) => {
+    members.forEach(member => {
+      if (!acc[member]) {
+        acc[member] = []
+      }
+      acc[member].push(club)
+    })
+    return acc
+  }, {})
 }
+
 console.log(findClubMembers(clubs))
 /*
 Level 2
@@ -62,6 +82,6 @@ Annotation:
 
 
 
-// module.exports = {
-//   findClubMembers
-// };
+module.exports = {
+  findClubMembers
+};
