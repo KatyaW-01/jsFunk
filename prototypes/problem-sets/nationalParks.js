@@ -25,8 +25,19 @@ e.g.
 Annotate:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
+function getParkVisitList() {
+ const list = nationalParks.reduce((acc,park) => {
+    if (park.visited === true) {
+      acc.parksVisited.push(park.name)
+    } else {
+      acc.parksToVisit.push(park.name)
+    }
+    return acc
+  }, {parksToVisit: [], parksVisited: []})
+  return list
+}
 
-
+console.log(getParkVisitList())
 /*
 Level 2
 
@@ -50,7 +61,16 @@ e.g.
 Annotation:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
+function getParkInEachState() {
+  const list = nationalParks.map((park) => {
+    let object = {}
+    object[park.location] = park.name
+    return object
+  })
+  return list
+}
 
+console.log(getParkInEachState())
 
 /*
 Level 3
@@ -82,7 +102,19 @@ Annotation:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
 
+function getParkActivities() {
+  let activities = []
+  nationalParks.forEach((park) => {
+    park.activities.forEach((activity) => {
+      activities.push(activity)
+    })
+  })
+  const uniqueActivities = new Set([...activities])
+  const activitiesArray = [...uniqueActivities]
+  return activitiesArray
+}
 
+console.log(getParkActivities())
   
 /*
 Level 4
@@ -100,8 +132,8 @@ Annotation:
 
 
 
-// module.exports = {
-//   getParkVisitList,
-//   getParkInEachState,
-//   getParkActivities
-// };
+module.exports = {
+  getParkVisitList,
+  getParkInEachState,
+  getParkActivities
+};

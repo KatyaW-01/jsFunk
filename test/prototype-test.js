@@ -801,7 +801,7 @@ describe("PROTOTYPES", () => {
   });
 
   describe("National Park Prompts", () => {
-    it.skip("getParkVisitList", () => {
+    it("getParkVisitList", () => {
       const e = getParkVisitList();
 
       expect(e).to.deep.equal({
@@ -809,7 +809,7 @@ describe("PROTOTYPES", () => {
         parksVisited: ['Rocky Mountain', 'Acadia', 'Zion']
       })
     }),
-      it.skip("getParkActivities", () => {
+      it("getParkActivities", () => {
         const e = getParkActivities();
 
         expect(e).to.deep.equal(
@@ -827,7 +827,7 @@ describe("PROTOTYPES", () => {
             'rock climbing'
           ])
       }),
-      it.skip("getParkInEachState", () => {
+      it("getParkInEachState", () => {
         const e = getParkInEachState();
 
         expect(e).to.deep.equal(
