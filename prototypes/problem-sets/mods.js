@@ -28,7 +28,13 @@ Annotate:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
 
-
+function getStats() {
+  const array = mods.map((mod) => {
+    return {mod: mod.mod, studentsPerInstructor: mod.students/mod.instructors}
+  })
+  return array
+}
+console.log(getStats())
 
 /*
 Level 2
@@ -46,6 +52,6 @@ Annotation:
 
 
 
-// module.exports = {
-//   getStats
-// };
+module.exports = {
+  getStats
+};
