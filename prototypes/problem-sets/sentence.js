@@ -27,8 +27,18 @@ e.g.
 Annotate:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
+function countLetters(letter) {
+  const characters = sentence.toLowerCase().split('')
+  let count = 0
+  characters.forEach((char) => {
+    if (char === letter.toLowerCase()) {
+      count += 1
+    }
+  })
+  return count
+}
 
-
+console.log(countLetters('E'))
 /*
 Level 2
 
@@ -67,7 +77,18 @@ Annotation:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
 
+function findLetterCounts() {
+  const characters = sentence.toLowerCase().split('')
+  const object = characters.reduce((acc,char) => {
+    if (!acc.char) {
+      acc[char] = countLetters(char)
+    } 
+    return acc
+  },{})
+  return object
+}
 
+console.log(findLetterCounts())
 /*
 Level 3
 
@@ -83,7 +104,7 @@ Annotation:
 */
 
 
-// module.exports = {
-//   countLetters, 
-//   findLetterCounts
-// };
+module.exports = {
+  countLetters, 
+  findLetterCounts
+};

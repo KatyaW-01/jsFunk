@@ -367,7 +367,7 @@ describe("PROTOTYPES", () => {
   })
 
   describe("Sentence Prompts", () => {
-    it.skip("countLetters", () => {
+    it("countLetters", () => {
       const letterT = countLetters("t");
       const letterZ = countLetters("z");
       const letterE = countLetters("E");
@@ -377,7 +377,7 @@ describe("PROTOTYPES", () => {
       expect(letterE).to.equal(5);
     })
 
-    it.skip("findLetterCounts", () => {
+    it("findLetterCounts", () => {
       const e = findLetterCounts();
 
       expect(e).to.deep.equal({
