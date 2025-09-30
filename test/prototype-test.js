@@ -337,13 +337,13 @@ describe("PROTOTYPES", () => {
   })
 
   describe("Plants Prompts", () => {
-    it.skip("findSpringBloomers", () => {
+    it("findSpringBloomers", () => {
       const e = findSpringBloomers();
 
       expect(e).to.equal(8);
     });
 
-    it.skip("findAverageHeight", () => {
+    it("findAverageHeight", () => {
       const meadowsAve = findAverageHeight("meadows");
       const forestsAve = findAverageHeight('forests');
       const grasslandsAve = findAverageHeight('grasslands');
@@ -353,7 +353,7 @@ describe("PROTOTYPES", () => {
       expect(grasslandsAve).to.equal(18);
     })
 
-    it.skip("organizeByHabitat", () => {
+    it("organizeByHabitat", () => {
       const e = organizeByHabitat("meadows");
 
       expect(e).to.deep.equal({

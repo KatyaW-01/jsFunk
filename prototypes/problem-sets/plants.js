@@ -22,7 +22,17 @@ e.g.
 Annotate:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
+function findSpringBloomers() {
+  let count = 0
+  coloradoPlants.forEach((plant) => {
+    if(plant.bloomingSeason.includes("Spring")) {
+      count += 1
+    }
+  })
+  return count
+}
 
+console.log(findSpringBloomers())
 
 /*
 Level 2
@@ -39,8 +49,19 @@ e.g.
 Annotation:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
+function findAverageHeight(habitat) {
+  let heightSum = 0
+  coloradoPlants.forEach((plant) => {
+    if (plant.habitat === habitat) {
+      heightSum += plant.height
+    }
+  })
+  const filteredPlants = coloradoPlants.filter((plant) => plant.habitat === habitat)
+  const average = heightSum / filteredPlants.length
+  return average
+}
 
-
+console.log(findAverageHeight('meadows'))
 /*
 Level 3
 
@@ -85,6 +106,18 @@ Annotation:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
 
+function organizeByHabitat() {
+  const organizedPlants = coloradoPlants.reduce((acc,plant) => {
+    if (!acc[plant.habitat]) {
+      acc[plant.habitat] = []
+    }
+    acc[plant.habitat].push(plant.name)
+    return acc
+  },{})
+  return organizedPlants
+}
+
+console.log(organizeByHabitat())
 
 /*
 Level 5
@@ -102,8 +135,8 @@ Annotation:
 
 
 
-// module.exports = {
-//   findSpringBloomers,
-//   findAverageHeight,
-//   organizeByHabitat
-// };
+module.exports = {
+  findSpringBloomers,
+  findAverageHeight,
+  organizeByHabitat
+};
