@@ -22,7 +22,19 @@ e.g.
 Annotate:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
+function getAverageTime() {
+  const times = []
+  tasks.forEach((task) => {
+    times.push(task.minutesNeeded)
+  })
+  const average = times.reduce((acc,time) => {
+    acc += time
+    return acc
+  },0)/times.length
+  return `The average time for all tasks is ${average} minutes.`
+}
 
+console.log(getAverageTime())
 
 /*
 Level 2
@@ -44,7 +56,17 @@ Annotation:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
 
-
+function getTasksByPerson(name) {
+  const taskList = tasks.reduce((acc,task) => {
+    if(task.assignedTo === name) {
+      acc.push(task.taskName)
+    }
+    return acc
+  },[])
+  return taskList
+}
+console.log(getTasksByPerson('Leta'))
+console.log(getTasksByPerson('Travis'))
 /*
 Level 3
 
@@ -65,7 +87,18 @@ e.g.
 Annotation:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
+function getStatusTimes() {
+  const status = tasks.reduce((acc,task) => {
+    if(!acc[task.status]) {
+      acc[task.status] = 0
+    }
+    acc[task.status] += task.minutesNeeded
+    return acc
+  },{})
+  return status
+}
 
+console.log(getStatusTimes())
 
 /*
 Level 4
@@ -89,6 +122,17 @@ Annotation:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
 
+function getAverageTime(status) {
+  const filteredTasks = tasks.filter((task) => task.status === status)
+  const average = filteredTasks.reduce((acc,task) => {
+    acc += task.minutesNeeded
+    return acc
+  },0)/filteredTasks.length
+  return `The average time for all ${status} tasks is ${average} minutes.`
+}
+
+console.log(getAverageTime('complete'))
+console.log(getAverageTime('inProgress'))
 
 /*
 Level 5
@@ -105,8 +149,8 @@ Annotation:
 */
 
 
-// module.exports = {
-//   getAverageTime,
-//   getTasksByPerson,
-//   getStatusTimes
-// };
+module.exports = {
+  getAverageTime,
+  getTasksByPerson,
+  getStatusTimes
+};

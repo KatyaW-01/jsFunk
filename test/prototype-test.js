@@ -275,7 +275,7 @@ describe("PROTOTYPES", () => {
   })
 
   describe("Task Prompts", () => {
-    it.skip("getAverageTime", () => {
+    it("getAverageTime", () => {
       const completeAve = getAverageTime("complete");
       const inProgressAve = getAverageTime("inProgress");
 
@@ -283,7 +283,7 @@ describe("PROTOTYPES", () => {
       expect(inProgressAve).to.deep.equal('The average time for all inProgress tasks is 90 minutes.');
     });
 
-    it.skip("getTasksByPerson", () => {
+    it("getTasksByPerson", () => {
       const letaTasks = getTasksByPerson("Leta");
       const travisTasks = getTasksByPerson("Travis");
       const robbieTasks = getTasksByPerson("Robbie");
@@ -293,7 +293,7 @@ describe("PROTOTYPES", () => {
       expect(robbieTasks).to.deep.equal([ 'debug issue #13', 'add feature #33' ]);
     })
 
-    it.skip("getStatusTimes", () => {
+    it("getStatusTimes", () => {
       const e = getStatusTimes();
 
       expect(e).to.deep.equal({ inProgress: 180, complete: 350, inTriage: 170 });
