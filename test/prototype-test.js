@@ -982,7 +982,7 @@ describe("PROTOTYPES", () => {
   });
 
   describe("Astronomy Prompts", () => {
-    it.skip("getStarsByColor", () => {
+    it("getStarsByColor", () => {
       const e = getStarsByColor();
 
       expect(e).to.deep.equal({

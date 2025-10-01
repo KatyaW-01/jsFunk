@@ -29,7 +29,17 @@ Annotate:
   After you find a solution, write out the steps of that solution.  Break them down as much as possible. 
 */
 
-  
+function getStarsByColor() {
+  const object = stars.reduce((acc,star) => {
+    if(!acc[star.color]) {
+      acc[star.color] = stars.filter((s) => s.color === star.color)
+    }
+    return acc
+  },{})
+  return object
+}
+
+console.log(getStarsByColor())
 /*
 Level 2
 
@@ -46,6 +56,6 @@ Annotation:
 
 
 
-// module.exports = {
-//   getStarsByColor
-// };
+module.exports = {
+  getStarsByColor
+};
